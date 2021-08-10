@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "746864829178",
+    "project_id": "unidoor-faf29",
+    "storage_bucket": "unidoor-faf29.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746864829178:android:8e57a128248410d4985f43",
+        "android_client_info": {
+          "package_name": "io.unidoor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "746864829178-60qma1umuklsqloe6cg3onbhqakugb70.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZk_3IdLv0EMoKiEbU5uUO-Z74p7bb614"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "746864829178-60qma1umuklsqloe6cg3onbhqakugb70.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
