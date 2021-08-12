@@ -8,16 +8,16 @@ import 'package:unidoor_ecommerce/NearBySeller/Models/near_by_seller_models.dart
 class NearBySellersApi {
   static Future<List<Datum>> getNearBySeller() async {
     int bufferInKM = 7;
-    double lat = 12.562244730306842;
-    double long = 74.95255538729042;
-    // SharedPreferences currentLocationStorage =
-    //     await SharedPreferences.getInstance();
-    // var currentLocationLat =
-    //     currentLocationStorage.getString('currentLocationLat');
-    // var currentLocationLong =
-    //     currentLocationStorage.getString('currentLocationLat');
-    // double lat = double.parse("$currentLocationLat");
-    // double long = double.parse("$currentLocationLat");
+    // double lat = 12.562244730306842;
+    // double long = 74.95255538729042;
+    SharedPreferences currentLocationStorage =
+        await SharedPreferences.getInstance();
+    var currentLocationLat =
+        currentLocationStorage.getString('currentLocationLat');
+    var currentLocationLong =
+        currentLocationStorage.getString('currentLocationLat');
+    double lat = double.parse("$currentLocationLat");
+    double long = double.parse("$currentLocationLat");
 
     String baseUrl = "https://unidoor-backend.herokuapp.com/";
     String url = baseUrl + "seller?bufferInKM=$bufferInKM&lat=$lat&lng=$long";
@@ -34,8 +34,5 @@ class NearBySellersApi {
     } else {
       return null;
     }
-    // return jsonResponse
-    //     .map((item) => new CountryCodeModel.fromJson(item))
-    //     .toList();
   }
 }
