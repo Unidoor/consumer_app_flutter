@@ -49,6 +49,7 @@ dependencies:
   shared_preferences: ^2.0.6
   dotted_border:
   logger:
+  badges: ^2.0.1
   flutter:
     sdk: flutter
 

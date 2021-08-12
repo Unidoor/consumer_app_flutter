@@ -66,8 +66,10 @@ class NearBySellers extends StatelessWidget {
               : Theme.of(context).primaryColor,
           leading: nearBySellerController.isSearchTapped.value
               ? IconButton(
-                  onPressed: () =>
-                      nearBySellerController.isSearchTapped.value = false,
+                  onPressed: () {
+                    nearBySellerController.clearSearchResult();
+                    nearBySellerController.isSearchTapped.value = false;
+                  },
                   icon: Icon(
                     Icons.arrow_back,
                     color: Colors.grey,
@@ -75,6 +77,7 @@ class NearBySellers extends StatelessWidget {
               : null,
           title: nearBySellerController.isSearchTapped.value
               ? TextField(
+                  autofocus: true,
                   decoration: InputDecoration(border: InputBorder.none),
                   onChanged: (String value) {
                     nearBySellerController.searchString.value = value;
@@ -314,36 +317,41 @@ void displayModalBottomSheet(context) {
               Expanded(
                 child: Obx(
                   () => nearBySellerController.isLoading.value != true
-                      ? Expanded(
-                          flex: 4,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: sellerCategoryController
-                                .sellerCategory.value.length,
-                            itemBuilder: (context, i) => InkWell(
-                              onTap: () {},
-                              child: Container(
-                                width: MediaQuery.of(context).size.width / 4,
-                                child: Column(
-                                  children: <Widget>[
-                                    CircleAvatar(
-                                      radius: 35,
-                                      backgroundImage: NetworkImage(
-                                          sellerCategoryController
-                                              .sellerCategory
-                                              .value[i]
-                                              .imageUrl),
-                                    ),
-                                    Text(
-                                      sellerCategoryController
-                                          .sellerCategory.value[i].name.inCaps,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: 18, color: kBlack),
-                                    ),
-                                    // ),
-                                  ],
-                                ),
+                      ? ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: sellerCategoryController
+                              .sellerCategory.value.length,
+                          itemBuilder: (context, i) => InkWell(
+                            onTap: () {
+                              nearBySellerController.searchString.value =
+                                  sellerCategoryController
+                                      .sellerCategory.value[i].name;
+                              nearBySellerController.fetchFilterResults(
+                                  sellerCategoryController
+                                      .sellerCategory.value[i].name);
+                              print(
+                                  "selcted category: ${sellerCategoryController.sellerCategory.value[i].name}");
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width / 4,
+                              child: Column(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    radius: 35,
+                                    backgroundImage: NetworkImage(
+                                        sellerCategoryController
+                                            .sellerCategory.value[i].imageUrl),
+                                  ),
+                                  Text(
+                                    sellerCategoryController
+                                        .sellerCategory.value[i].name.inCaps,
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        TextStyle(fontSize: 18, color: kBlack),
+                                  ),
+                                  // ),
+                                ],
                               ),
                             ),
                           ),

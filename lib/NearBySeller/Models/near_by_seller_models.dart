@@ -9,12 +9,6 @@ NearBySeller nearBySellerFromJson(String str) =>
 
 String nearBySellerToJson(NearBySeller data) => json.encode(data.toJson());
 
-Location nearBySellerLocationFromJson(String str) =>
-    Location.fromJson(json.decode(str));
-
-String nearBySellerLocationToJson(NearBySeller data) =>
-    json.encode(data.toJson());
-
 class NearBySeller {
   NearBySeller({
     this.data,
@@ -65,7 +59,7 @@ class Datum {
   String deliveryMode;
   String id;
   String imageUrl;
-  Location location;
+  List<double> location;
   String mobileNumber;
   String name;
   bool open;
@@ -82,8 +76,7 @@ class Datum {
         deliveryMode: json["deliveryMode"],
         id: json["id"],
         imageUrl: json["imageUrl"],
-        // location:  [json["location"][0],json["location"][1]]
-        // Location.fromJson(json["location"]),
+        location: List<double>.from(json["location"].map((x) => x.toDouble())),
         mobileNumber: json["mobileNumber"],
         name: json["name"],
         open: json["open"],
@@ -101,7 +94,7 @@ class Datum {
         "deliveryMode": deliveryMode,
         "id": id,
         "imageUrl": imageUrl,
-        "location": location.toJson(),
+        "location": List<dynamic>.from(location.map((x) => x)),
         "mobileNumber": mobileNumber,
         "name": name,
         "open": open,
@@ -109,33 +102,5 @@ class Datum {
         "rating": rating,
         "totalProducts": totalProducts,
         "distance": distance,
-      };
-}
-
-class Location {
-  Location({
-    this.coordinates,
-    this.type,
-    this.x,
-    this.y,
-  });
-
-  List<double> coordinates;
-  String type;
-  double x;
-  double y;
-
-  factory Location.fromJson(Map<String, dynamic> json) => Location(
-        coordinates: List<double>.from(json["coordinates"].map((x) => x)),
-        type: json["type"],
-        x: json["x"],
-        y: json["y"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "coordinates": List<dynamic>.from(coordinates.map((x) => x)),
-        "type": type,
-        "x": x,
-        "y": y,
       };
 }

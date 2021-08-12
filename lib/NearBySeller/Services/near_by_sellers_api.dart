@@ -23,11 +23,11 @@ class NearBySellersApi {
     String url = baseUrl + "seller?bufferInKM=$bufferInKM&lat=$lat&lng=$long";
     print("Request is = $url");
     final response = await http.get(Uri.parse(url));
-    print(response.body);
+    // print(response.body);
     if (response.statusCode == 200) {
       var jsonResponse = json.decode(response.body);
 
-      print("json response first : ${jsonResponse}");
+      print("json response first : success");
       NearBySeller nearBySeller = new NearBySeller.fromJson(jsonResponse);
       // var jsonResponse = response.body;
       return nearBySeller.data;

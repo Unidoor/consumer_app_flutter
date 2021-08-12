@@ -32,6 +32,24 @@ class NearBySellerController extends GetxController {
     });
   }
 
+  void fetchFilterResults(String value) {
+    sellerNearByList.value.clear();
+    //  Do Api call here and get
+    // sellerNearByList.value = [];
+    final String searchString = value.toLowerCase();
+    print("category : $searchString");
+    if (sellerNearByPrimaryList.value != null) {
+      final tempList = sellerNearByPrimaryList.value
+          .where((value) => value.category.toLowerCase().contains(searchString))
+          .toList();
+      print("List called : ${tempList.length}");
+      tempList.forEach((element) => sellerNearByList.value.add(element));
+      sellerNearByPrimaryList.value.forEach((element) {
+        print(element);
+      });
+    } else {}
+  }
+
   void fetchSearchResults(String value) {
     sellerNearByList.value.clear();
     //  Do Api call here and get
@@ -40,7 +58,7 @@ class NearBySellerController extends GetxController {
 
     if (sellerNearByPrimaryList.value != null) {
       final tempList = sellerNearByPrimaryList.value
-          .where((value) => value.name.contains(searchString))
+          .where((value) => value.name.toLowerCase().contains(searchString))
           .toList();
       tempList.forEach((element) => sellerNearByList.value.add(element));
     } else {}
@@ -51,19 +69,19 @@ class NearBySellerController extends GetxController {
         await SharedPreferences.getInstance();
     currentLocationLat = currentLocationStorage.getString('currentLocationLat');
     currentLocationLong =
-        currentLocationStorage.getString('currentLocationLat');
-    print("CurrentLatitude = $currentLocationLat");
-    print("CurrentLongitude = $currentLocationLong");
+        currentLocationStorage.getString('currentLocationLong');
+    // print("CurrentLatitude = $currentLocationLat");
+    // print("CurrentLongitude = $currentLocationLong");
     isLoading(true);
     print("fetch method called");
     var sellerNearByListJson = await NearBySellersApi.getNearBySeller();
     sellerNearByListJson.forEach((element) {
-      // double lat = element.location.first; //12.54498;
-      // double long = element.location.last; //74.9617935;
-      double lat = 12.54498;
-      double long = 74.9617935;
-      print("lat = $lat");
-      print("long = $long");
+      double lat = element.location.first; //12.54498;
+      double long = element.location.last; //74.9617935;
+      // double lat = 12.54498;
+      // double long = 74.9617935;
+      // print("lat = $lat");
+      // print("long = $long");
       distances = calculateDistance(lat, long);
       element.distance = distances;
     });
@@ -71,7 +89,7 @@ class NearBySellerController extends GetxController {
     sellerNearByListJson.sort((a, b) {
       return a.distance.compareTo(b.distance);
     });
-    print("modified json = $sellerNearByListJson");
+    // print("modified json = $sellerNearByListJson");
     int distanceIndex = sellerNearByListJson.length;
     for (Datum datum in sellerNearByListJson) {
       sellerNearByPrimaryList.value.add(datum);
@@ -80,14 +98,16 @@ class NearBySellerController extends GetxController {
     sellerNearByPrimaryList.value.forEach((element) {
       sellerNearByList.value.add(element);
     });
-    print("distances = $distances");
+    // print("distances = $distances");
     isLoading(false);
   }
 
   double calculateDistance(lat1, lon1) {
     var p = 0.017453292519943295;
     var lat2 = double.parse("$currentLocationLat");
+    // print("current lat :$lat2");
     var lon2 = double.parse("$currentLocationLong");
+    // print("current long :$lon2");
     var c = cos;
     var a = 0.5 -
         c((lat2 - lat1) * p) / 2 +
