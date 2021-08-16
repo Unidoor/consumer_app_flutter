@@ -11,6 +11,11 @@ const kLightColor = Color(0xFF707070);
 const kButtonLight = Color(0xFFC7C7C7);
 const kBlack = Color(0xFF000000);
 const kRatingStart = Color(0xFFFFC107);
+const kPriceColor = Color(0xFFFF7D7D);
+const kQuantityButton = Color(0xFFFA5555);
+const kOfferText = Color(0xFF02CB02);
+const kMoreOrLess = Color(0xFF00C4EC);
+const kOutOfStock = Color(0xFFFF0000);
 
 const kDefaultPadding = 24.0;
 const kLessPadding = 10.0;

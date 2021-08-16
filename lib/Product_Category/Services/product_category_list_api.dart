@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:unidoor_ecommerce/Product_Category/Models/product_category_list_models.dart';
 
-class ProductCategoryList {
+class ProductCategoryListAPI {
   static Future<List<Datum>> getProductCategoryList() async {
     String categoryId = "";
     int pageNumber = 0;
@@ -11,16 +11,16 @@ class ProductCategoryList {
     String sellerId = "60e93f91f2fa4a0224983f2c";
 
     String baseUrl = "https://unidoor-backend.herokuapp.com/";
-    String url = baseUrl + "seller/" + sellerId + "products";
+    String url = baseUrl + "seller/" + sellerId + "/products";
     print("request Url = $url");
 
     final response = await http.get(Uri.parse(url));
-
+    print("product lis = ${response.body}");
     if (response.statusCode == 200) {
       var jsonResponse = json.decode(response.body);
-      ProductCategoryList productCategoryList =
-          ProductCategoryList.fromJson(jsonResponse);
-      return productCategoryList.data;
+      ProductCategoryListModels productCategoryListModels =
+          new ProductCategoryListModels.fromJson(jsonResponse);
+      return productCategoryListModels.data;
     } else {
       return null;
     }

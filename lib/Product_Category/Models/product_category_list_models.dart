@@ -1,17 +1,17 @@
 // To parse this JSON data, do
 //
-//     final productCategoryList = productCategoryListFromJson(jsonString);
+//     final productCategoryListModels = productCategoryListModelsFromJson(jsonString);
 
 import 'dart:convert';
 
-ProductCategoryList productCategoryListFromJson(String str) =>
-    ProductCategoryList.fromJson(json.decode(str));
+ProductCategoryListModels productCategoryListModelsFromJson(String str) =>
+    ProductCategoryListModels.fromJson(json.decode(str));
 
-String productCategoryListToJson(ProductCategoryList data) =>
+String productCategoryListModelsToJson(ProductCategoryListModels data) =>
     json.encode(data.toJson());
 
-class ProductCategoryList {
-  ProductCategoryList({
+class ProductCategoryListModels {
+  ProductCategoryListModels({
     this.message,
     this.status,
     this.data,
@@ -21,8 +21,8 @@ class ProductCategoryList {
   bool status;
   List<Datum> data;
 
-  factory ProductCategoryList.fromJson(Map<String, dynamic> json) =>
-      ProductCategoryList(
+  factory ProductCategoryListModels.fromJson(Map<String, dynamic> json) =>
+      ProductCategoryListModels(
         message: json["message"] == null ? null : json["message"],
         status: json["status"] == null ? null : json["status"],
         data: json["data"] == null
@@ -58,8 +58,8 @@ class Datum {
   String id;
   String name;
   String description;
-  int cost;
-  int strikedCost;
+  double cost;
+  double strikedCost;
   int offerPercentage;
   String imageUrl;
   String unit;

@@ -15,10 +15,10 @@ class NearBySellersApi {
     var currentLocationLat =
         currentLocationStorage.getString('currentLocationLat');
     var currentLocationLong =
-        currentLocationStorage.getString('currentLocationLat');
+        currentLocationStorage.getString('currentLocationLong');
     double lat = double.parse("$currentLocationLat");
-    double long = double.parse("$currentLocationLat");
-
+    double long = double.parse("$currentLocationLong");
+    print("current latitude:$lat current longitude: $long ");
     String baseUrl = "https://unidoor-backend.herokuapp.com/";
     String url = baseUrl + "seller?bufferInKM=$bufferInKM&lat=$lat&lng=$long";
     print("Request is = $url");
