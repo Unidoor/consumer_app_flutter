@@ -53,6 +53,9 @@ class Datum {
     this.category,
     this.costCurrency,
     this.outOfStock,
+    this.isChecked,
+    this.quantityKg,
+    this.quantityGram,
   });
 
   String id;
@@ -67,23 +70,24 @@ class Datum {
   String category;
   String costCurrency;
   bool outOfStock;
+  bool isChecked = false;
+  int quantityKg = 1;
+  int quantityGram = 500;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        id: json["id"] == null ? null : json["id"],
-        name: json["name"] == null ? null : json["name"],
-        description: json["description"] == null ? null : json["description"],
-        cost: json["cost"] == null ? null : json["cost"],
-        strikedCost: json["strikedCost"] == null ? null : json["strikedCost"],
-        offerPercentage:
-            json["offerPercentage"] == null ? null : json["offerPercentage"],
-        imageUrl: json["imageUrl"] == null ? null : json["imageUrl"],
-        unit: json["unit"] == null ? null : json["unit"],
-        seller: json["seller"] == null ? null : json["seller"],
-        category: json["category"] == null ? null : json["category"],
-        costCurrency:
-            json["costCurrency"] == null ? null : json["costCurrency"],
-        outOfStock: json["outOfStock"] == null ? null : json["outOfStock"],
-      );
+      id: json["id"] == null ? null : json["id"],
+      name: json["name"] == null ? null : json["name"],
+      description: json["description"] == null ? null : json["description"],
+      cost: json["cost"] == null ? null : json["cost"],
+      strikedCost: json["strikedCost"] == null ? null : json["strikedCost"],
+      offerPercentage:
+          json["offerPercentage"] == null ? null : json["offerPercentage"],
+      imageUrl: json["imageUrl"] == null ? null : json["imageUrl"],
+      unit: json["unit"] == null ? null : json["unit"],
+      seller: json["seller"] == null ? null : json["seller"],
+      category: json["category"] == null ? null : json["category"],
+      costCurrency: json["costCurrency"] == null ? null : json["costCurrency"],
+      outOfStock: json["outOfStock"] == null ? null : json["outOfStock"]);
 
   Map<String, dynamic> toJson() => {
         "id": id == null ? null : id,

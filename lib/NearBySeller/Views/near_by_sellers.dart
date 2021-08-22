@@ -73,7 +73,8 @@ class NearBySellers extends StatelessWidget {
                   icon: Icon(
                     Icons.arrow_back,
                     color: Colors.grey,
-                  ))
+                  ),
+                )
               : null,
           title: nearBySellerController.isSearchTapped.value
               ? TextField(

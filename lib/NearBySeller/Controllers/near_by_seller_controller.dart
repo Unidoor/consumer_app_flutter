@@ -44,9 +44,9 @@ class NearBySellerController extends GetxController {
           .toList();
       print("List called : ${tempList.length}");
       tempList.forEach((element) => sellerNearByList.value.add(element));
-      sellerNearByPrimaryList.value.forEach((element) {
-        print(element);
-      });
+      // sellerNearByPrimaryList.value.forEach((element) {
+      //   print(element);
+      // });
     } else {}
   }
 

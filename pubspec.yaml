@@ -50,6 +50,7 @@ dependencies:
   dotted_border:
   logger:
   badges: ^2.0.1
+  readmore: ^2.1.0
   flutter:
     sdk: flutter
 
